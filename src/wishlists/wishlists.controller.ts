@@ -66,4 +66,3 @@ export class WishlistsController {
     return deletedWishlist;
   }
 }
-  

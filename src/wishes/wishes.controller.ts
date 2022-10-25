@@ -58,7 +58,6 @@ export class WishesController {
       updateWishDto,
       req.user.id,
     );
-    console.log(wish);
     return wish;
   }
 
@@ -72,6 +71,7 @@ export class WishesController {
   @UseGuards(JwtAuthGuard)
   @Post(':id/copy')
   async copyWish(@Param('id') id: number, @Req() req) {
-    const copiedWish = await this.wishesService.copyWish(id, req.user.id);
+    await this.wishesService.copyWish(id, req.user.id);
+    return {};
   }
 }

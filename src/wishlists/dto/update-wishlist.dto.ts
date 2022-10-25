@@ -1,12 +1,4 @@
-import {
-  IsString,
-  MinLength,
-  MaxLength,
-  IsUrl,
-  IsInt,
-  IsNotEmpty,
-  IsArray,
-} from 'class-validator';
+import { IsString, IsUrl, IsArray } from 'class-validator';
 
 export class UpdateWislistDto {
   @IsString()

@@ -1,10 +1,9 @@
-import { Injectable, Req, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Wish } from './entities/wishes.entities';
-import { Like, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { CreateWishDto } from './dto/create-wish.dto';
 import { User } from 'src/users/entities/user.entities';
-import { Offer } from 'src/offers/entities/offers.entities';
 import { UserOwnException } from './exceptions/user-own-wish.exception';
 import { UpdateWishDto } from './dto/update-wish.dto';
 
@@ -59,8 +58,6 @@ export class WishesService {
       .leftJoinAndSelect('wish.owner', 'owner')
       .leftJoinAndSelect('wish.offers', 'offers')
       .leftJoinAndSelect('offers.user', 'user')
-      // .leftJoinAndSelect('user.wishes', 'wishes')
-      // .leftJoinAndSelect('user.offers', 'offer')
       .leftJoinAndSelect('user.wishlists', 'wishlists')
       .orderBy(`wish.${orderBy}`, 'DESC')
       .getMany();
@@ -104,7 +101,7 @@ export class WishesService {
     if (wish.owner.id !== userId) {
       throw new UserOwnException();
     }
-    const deletedWish = await this.wishRepository
+    await this.wishRepository
       .createQueryBuilder()
       .delete()
       .from(Wish)

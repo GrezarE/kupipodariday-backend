@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { User } from '../users/entities/user.entities';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
@@ -22,9 +22,7 @@ export class AuthService {
 
     const isMatch = await bcrypt.compare(password, user.password);
 
-    /* В идеальном случае пароль обязательно должен быть захэширован */
     if (user && isMatch) {
-      /* Исключаем пароль из результата */
       const { password, ...result } = user;
 
       return result;

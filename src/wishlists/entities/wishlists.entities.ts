@@ -1,9 +1,8 @@
-import { Max, IsDate, IsUrl, IsInt, Min } from 'class-validator';
+import { Max, IsUrl, Min } from 'class-validator';
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToMany,
   ManyToOne,
   JoinColumn,
   UpdateDateColumn,
@@ -34,14 +33,7 @@ export class Wishlist {
   @IsUrl()
   image: string;
 
-  // @OneToMany(() => Wish, (wish) => wish.id)
-  // // @JoinColumn()
-  // items: Wish[];
-
-  // @Column('int', { array: true })
-  // items: number[];
-
-  @ManyToMany(() => Wish, (wish) => wish.id, {cascade: true})
+  @ManyToMany(() => Wish, (wish) => wish.id, { cascade: true })
   @JoinTable()
   items: any[];
 

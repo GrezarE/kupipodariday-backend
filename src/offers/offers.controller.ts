@@ -8,16 +8,12 @@ import {
   Param,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { WishesService } from 'src/wishes/wishes.service';
 import { CreateOfferDto } from './dto/create-offer.dto';
 import { OffersService } from './offers.service';
 
 @Controller('offers')
 export class OffersController {
-  constructor(
-    private offerService: OffersService,
-    private wishService: WishesService,
-  ) {}
+  constructor(private offerService: OffersService) {}
 
   @UseGuards(JwtAuthGuard)
   @Post()

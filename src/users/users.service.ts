@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Like, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entities';
 import { CreateUserDto } from './dto/create-user.dto';
 import { PatchUserDto } from './dto/patch-user.dto';
 import * as bcrypt from 'bcrypt';
-import { Wish } from 'src/wishes/entities/wishes.entities';
 
 @Injectable()
 export class UsersService {
@@ -32,7 +31,6 @@ export class UsersService {
       .createQueryBuilder('user')
       .where({ id })
       .addSelect('user.email')
-      // .addSelect('user.password') // убрать
       .getOne();
 
     return user;
@@ -72,7 +70,7 @@ export class UsersService {
       .leftJoinAndSelect('wishlists.owner', 'owners')
       .where({ username })
       .getOne();
-    const { wishes, ...result } = user;
+    const { wishes } = user;
     return wishes;
   }
 

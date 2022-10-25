@@ -1,18 +1,15 @@
 import { Max, IsUrl, IsInt, Min } from 'class-validator';
 import { Offer } from 'src/offers/entities/offers.entities';
 import { User } from 'src/users/entities/user.entities';
-import { Wishlist } from 'src/wishlists/entities/wishlists.entities';
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   OneToMany,
   ManyToOne,
-  JoinTable,
   JoinColumn,
   UpdateDateColumn,
   CreateDateColumn,
-  ManyToMany,
 } from 'typeorm';
 
 @Entity()
@@ -59,7 +56,4 @@ export class Wish {
 
   @Column({ default: 0 })
   copied: number;
-
-  // @ManyToMany(()=> Wishlist, (wishlist) => wishlist.items)
-  // wishlist: Wishlist[]
 }
