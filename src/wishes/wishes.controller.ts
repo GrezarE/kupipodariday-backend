@@ -25,14 +25,14 @@ export class WishesController {
 
     return wish;
   }
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get('last')
   async getLast() {
     const wishes = this.wishesService.findMany('createdAt', 40);
     return wishes;
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get('top')
   async getTop() {
     const wishes = this.wishesService.findMany('copied', 20);
