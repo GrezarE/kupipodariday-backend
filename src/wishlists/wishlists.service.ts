@@ -17,7 +17,7 @@ export class WishlistsService {
   ) {}
 
   async create(createWishlistDto: CreateWishlistDto, owner: User) {
-    const wishes = await this.arrayToWishes(createWishlistDto.itemsId);
+    const wishes = await this.getWishesById(createWishlistDto.itemsId);
 
     const wishlistData = {
       owner,
@@ -49,7 +49,7 @@ export class WishlistsService {
     if (wish.owner.id !== user) {
       return null;
     }
-    const wishes = await this.arrayToWishes(updateWishlistDto.itemsId);
+    const wishes = await this.getWishesById(updateWishlistDto.itemsId);
 
     (wish.name = updateWishlistDto.name || wish.name),
       (wish.image = updateWishlistDto.image || wish.image),
@@ -85,17 +85,18 @@ export class WishlistsService {
     return wishlists;
   }
 
-  async arrayToWishes(array: any[]) {
-    let resolvedWishes;
+  async getWishesById(array: any[]) {
+    let resolvedWishes: any[] = [];
     const wishes = array?.map(async (item) => {
       const { owner, offers, ...wish } = await this.wishService.findOne(item);
       return wish;
     });
 
     if (wishes) {
-      await Promise.all(wishes).then((items) => {
-        resolvedWishes = items;
-      });
+      for (const asyncWish of wishes) {
+        const result = await asyncWish;
+        resolvedWishes.push(result);
+      }
     }
 
     return resolvedWishes;
