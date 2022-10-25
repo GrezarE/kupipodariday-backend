@@ -54,7 +54,6 @@ export class WishlistsService {
     (wish.name = updateWishlistDto.name || wish.name),
       (wish.image = updateWishlistDto.image || wish.image),
       (wish.items = wishes || wish.items);
-    console.log(wishes);
 
     return this.wishlishRepository.save(wish);
   }
