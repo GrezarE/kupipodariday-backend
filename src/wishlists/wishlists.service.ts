@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/users/entities/user.entities';
+import  {User} from 'src/users/entities/user.entities';
 import { UserOwnException } from 'src/wishes/exceptions/user-own-wish.exception';
 import { WishesService } from 'src/wishes/wishes.service';
 import { Repository } from 'typeorm';
 import { CreateWishlistDto } from './dto/create-wishlist.dto';
 import { UpdateWislistDto } from './dto/update-wishlist.dto';
-import { Wishlist } from './entities/wishlists.entities';
+import  {Wishlist}  from './entities/wishlists.entities';
 
 @Injectable()
 export class WishlistsService {

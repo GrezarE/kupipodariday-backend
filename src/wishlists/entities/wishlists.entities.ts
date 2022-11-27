@@ -10,11 +10,11 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import { Wish } from 'src/wishes/entities/wishes.entities';
-import { User } from 'src/users/entities/user.entities';
+import  {Wish}  from 'src/wishes/entities/wishes.entities';
+import  {User}  from 'src/users/entities/user.entities';
 
 @Entity()
-export class Wishlist {
+export  class Wishlist {
   @PrimaryGeneratedColumn()
   id: number;
 

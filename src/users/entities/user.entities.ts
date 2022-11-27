@@ -1,7 +1,7 @@
 import { Min, Max, IsEmail, IsUrl } from 'class-validator';
-import { Offer } from 'src/offers/entities/offers.entities';
-import { Wish } from 'src/wishes/entities/wishes.entities';
-import { Wishlist } from 'src/wishlists/entities/wishlists.entities';
+import  {Offer}  from 'src/offers/entities/offers.entities';
+import  {Wish}  from 'src/wishes/entities/wishes.entities';
+import  {Wishlist}  from 'src/wishlists/entities/wishlists.entities';
 import {
   Entity,
   PrimaryGeneratedColumn,

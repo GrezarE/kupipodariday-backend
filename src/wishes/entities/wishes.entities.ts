@@ -1,6 +1,6 @@
 import { Max, IsUrl, IsInt, Min } from 'class-validator';
-import { Offer } from 'src/offers/entities/offers.entities';
-import { User } from 'src/users/entities/user.entities';
+import {Offer}  from 'src/offers/entities/offers.entities';
+import  {User}  from 'src/users/entities/user.entities';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -13,7 +13,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Wish {
+export  class Wish {
   @PrimaryGeneratedColumn()
   id: number;
 
